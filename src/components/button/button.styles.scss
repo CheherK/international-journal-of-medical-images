@@ -1,0 +1,15 @@
+.main-button {
+   padding: 15px 25px;
+   border-radius: 20px;
+   background-color: #2ba6ec;
+   cursor: pointer;
+   color: white;
+   font-size: 20px;
+   letter-spacing: 1px;
+   border: none;
+   color: white;
+   transition: .3s;
+   &:hover {
+      box-shadow: 0 0 10px 0 #2ba6ec;
+   }
+}

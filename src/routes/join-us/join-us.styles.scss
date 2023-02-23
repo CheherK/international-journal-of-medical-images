@@ -1,0 +1,42 @@
+.join-us {
+   padding-top: 80px;
+   h1 {
+      font-size: 54px;
+      text-align: center;
+   }
+   .card-container {
+      padding-top: 80px;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      .card {
+         cursor: pointer;
+         width: 300px;
+         border: 2px solid #449342;
+         border-radius: 6px;
+         padding: 20px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         transition: .6s;
+         &:hover {
+            background-color: #449342;
+            svg,
+            h2 {
+               color: white;
+            }
+         }
+         svg {
+            transition: inherit;
+            font-size: 72px;
+            color: #449342;
+         }
+         h2 {
+            transition: inherit;
+            font-size: 44px;
+            margin-top: 20px;
+            color: black;
+         }
+      }
+   }
+}
