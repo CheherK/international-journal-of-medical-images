@@ -6,12 +6,11 @@
    }
    .card-container {
       padding-top: 80px;
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 50px;
       .card {
          cursor: pointer;
-         width: 300px;
          border: 2px solid #449342;
          border-radius: 6px;
          padding: 20px;

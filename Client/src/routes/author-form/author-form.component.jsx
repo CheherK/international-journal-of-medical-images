@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import './author-form.styles.scss'
+import './author-form.styles.scss';
 
-const  AuthorForm = () => {
+const AuthorForm = () => {
    const [form, setForm] = useState({
       firstName: "",
       lastName: "",
@@ -52,59 +52,61 @@ const  AuthorForm = () => {
 
    return (
       <div className='form-container'>
-         <h1>Author Submission Form</h1>
-         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formFirstName">
-               <Form.Label>First Name</Form.Label>
-               <Form.Control type="text" name="firstName" required onChange={handleInputChange} />
-            </Form.Group>
+         <div className='container'>
+            <h1>Author Submission Form</h1>
+            <Form onSubmit={handleSubmit}>
+               <Form.Group controlId="formFirstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control type="text" name="firstName" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formLastName">
-               <Form.Label>Last Name</Form.Label>
-               <Form.Control type="text" name="lastName" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formLastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control type="text" name="lastName" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formEmail">
-               <Form.Label>Email</Form.Label>
-               <Form.Control type="email" name="email" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formEmail">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" name="email" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formTitle">
-               <Form.Label>Title</Form.Label>
-               <Form.Control type="text" name="title" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formTitle">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control type="text" name="title" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formDegree">
-               <Form.Label>Degree</Form.Label>
-               <Form.Control type="text" name="degree" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formDegree">
+                  <Form.Label>Degree</Form.Label>
+                  <Form.Control type="text" name="degree" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formPhoneNumber">
-               <Form.Label>Phone Number</Form.Label>
-               <Form.Control type="tel" name="phoneNumber" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formPhoneNumber">
+                  <Form.Label>Phone Number</Form.Label>
+                  <Form.Control type="tel" name="phoneNumber" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formInstitution">
-               <Form.Label>Institution</Form.Label>
-               <Form.Control type="text" name="institution" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formInstitution">
+                  <Form.Label>Institution</Form.Label>
+                  <Form.Control type="text" name="institution" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formCountry">
-               <Form.Label>Country</Form.Label>
-               <Form.Control type="text" name="country" required onChange={handleInputChange} />
-            </Form.Group>
+               <Form.Group controlId="formCountry">
+                  <Form.Label>Country</Form.Label>
+                  <Form.Control type="text" name="country" required onChange={handleInputChange} />
+               </Form.Group>
 
-            <Form.Group controlId="formPaper">
-               <Form.Label>Paper</Form.Label>
-               <Form.Control type="file" name="paper" required accept=".pdf" onChange={handleFileChange} />
-            </Form.Group>
+               <Form.Group controlId="formPaper">
+                  <Form.Label>Paper</Form.Label>
+                  <Form.Control type="file" name="paper" required accept=".pdf" onChange={handleFileChange} />
+               </Form.Group>
 
-            <Button variant="primary" type="submit">
-               Submit
-            </Button>
-         </Form>
+               <Button variant="primary" type="submit">
+                  Submit
+               </Button>
+            </Form>
+         </div>
       </div>
    );
-}
+};
 
 export default AuthorForm;

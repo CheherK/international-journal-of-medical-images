@@ -16,7 +16,6 @@
    }
 
    ul {
-      list-style-type: none;
       height: 100%;
       display: flex;
       align-items: center;
@@ -27,14 +26,19 @@
       }
    }
 }
-
-a {
-   text-decoration: none;
-}
-*,
-*::before,
-*::after {
-   box-sizing: border-box;
-   padding: 0;
-   margin: 0;
+@media (max-width: 992px) {
+   .navigation {
+      nav {
+         height: 100%;
+         padding-right: 25px;
+      }
+   
+      ul {
+         display: none;
+         li {
+            padding: 10px 15px;
+            cursor: pointer;
+         }
+      }
+   }
 }
