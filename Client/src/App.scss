@@ -1,13 +1,13 @@
-@import "~bootstrap/scss/bootstrap";
+@import-normalize;
 
 :root {
-   --mainColor: #449342;
-   --secondaryColor: #2ba6ec;
-   --thirdColor: ;
-   --mainTransition: 0.5s;
-   --mainGap: 40px;
-   --mainBoxShodow: #02353c 0px 5px 15px;
-   --mainLineHeight: 1.7;
+   --main-color: #449342;
+   --secondary-color: #2ba6ec;
+   --third-color: #02353C;
+   --main-transition: 0.5s;
+   --main-gap: 40px;
+   --main-box-shodow: #eee 0px 3px 8px;
+   --main-line-height: 1.7;
 }
 
 *,
@@ -30,6 +30,12 @@ ul {
 
 a {
    text-decoration: none;
+}
+
+body {
+   font-family: 'Open Sans', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
 .container {

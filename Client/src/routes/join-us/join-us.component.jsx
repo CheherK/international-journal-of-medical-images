@@ -1,35 +1,34 @@
-import "./join-us.styles.scss";
-import { AiOutlineRead } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
 import { TfiWrite } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import JoinUsCard from "../../components/join-us-card/join-us-card.component";
+import "./join-us.styles.scss";
 
-const JoinUs = () => (
+const authorBenefits = [
+   "Publication and dissemination of papars",
+   "Peer Review and Feedback for papers",
+   "Career advancement and opportunities for collaborations",
+];
+
+const reviewerBenefits = [
+   "Evaluate the quality of submitted papers",
+   "Contributes to the advancement of knowledge in the field",
+   "Helps to maintain the integrity and credibility of the publication process",
+];
+
+const JoinUs = () => {
+   const navigate = useNavigate();
+   const authorNavigateHandler = () => navigate("/author-form");
+   const reviewerNavigateHandler = () => navigate("/");
+   return (
    <section className="join-us">
+      <h1>Join as</h1>
       <div className="container">
-         <h1>Join as</h1>
-         <div className="card-container">
-            <Link to="/">
-               <div className="card">
-                  <AiOutlineRead />
-                  <h2>Reader</h2>
-               </div>
-            </Link>
-            <Link to="/authorForm">
-               <div className="card">
-                  <TfiWrite />
-                  <h2>Author</h2>
-               </div>
-            </Link>
-            <Link to="/">
-               <div className="card">
-                  <VscOpenPreview />
-                  <h2>Reviewer</h2>
-               </div>
-            </Link>
-         </div>
+         <JoinUsCard cardIcon={<TfiWrite />} title="Author" benefits={authorBenefits} onClick={authorNavigateHandler} />
+         <JoinUsCard cardIcon={<VscOpenPreview />} title="Reviewer" benefits={reviewerBenefits} onClick={reviewerNavigateHandler} />
       </div>
    </section>
-);
+   )
+}
 
 export default JoinUs;

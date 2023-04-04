@@ -1,8 +1,14 @@
 import './button.styles.scss';
 
-const Button = ({text}) => 
-   <button className='main-button'>
-      {text}
+export const BUTTON_TYPE = {
+   MAIN_BUTTON: 'main-button',
+   SECOND_BUTTON: 'second-button',
+   THIRD_BUTTON: 'third-button',
+}
+
+const Button = ({children, buttonType, ...otherProps}) => 
+   <button className={`button-container ${buttonType}`} {...otherProps}>
+      {children}
    </button>
 
 export default Button;

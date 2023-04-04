@@ -22,8 +22,8 @@
    img {
       height: 400px;
       margin-right: 50px;
-      transition: var(--mainTransition);
-      filter: drop-shadow(var(--mainBoxShodow));
+      transition: var(--main-transition);
+      filter: drop-shadow(#02353C 0px 5px 15px);
       cursor: pointer;
       &:hover {
          transform: scale(1.04);
@@ -35,6 +35,9 @@
    .landing-page {
       .introduction {
          width: 100%;
+         p {
+            font-size: 16px;
+         }
       }
       img {
          display: none;

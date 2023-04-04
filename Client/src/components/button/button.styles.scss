@@ -1,15 +1,37 @@
-.main-button {
-   padding: 15px 25px;
-   border-radius: 20px;
-   background-color: #2ba6ec;
+.button-container {
+   padding: 10px 20px;
+   border-radius: 6px;
    cursor: pointer;
-   color: white;
-   font-size: 20px;
+   font-size: 18px;
    letter-spacing: 1px;
    border: none;
    color: white;
    transition: .3s;
+}
+
+.button-container.main-button {
+   background-color: var(--secondary-color);
+
    &:hover {
-      box-shadow: 0 0 10px 0 #2ba6ec;
+      background-color: var(--third-color);
+   }
+}
+
+.button-container.second-button {
+   background-color: var(--main-color);
+
+   &:hover {
+      background-color: var(--third-color);
+      border: 1px solid white;
+   }
+}
+
+.button-container.third-button {
+   background-color: white;
+   border: 1px solid black;
+   color: black;
+
+   &:hover {
+      color: white;
    }
 }

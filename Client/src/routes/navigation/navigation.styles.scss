@@ -1,43 +1,90 @@
 .navigation {
    height: 80px;
-   width: 100%;
-   display: flex;
-   justify-content: space-between;
-   .logo-container {
+   box-shadow: var(--main-box-shodow);
+   position: relative;
+   z-index: 9999;
+   .container {
       height: 100%;
-      padding-left: 25px;
-      img {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo-container {
+         height: 100%;
+
+         img {
+            height: 100%;
+         }
+      }
+
+      nav {
          height: 100%;
       }
-   }
-   nav {
-      height: 100%;
-      padding-right: 25px;
-   }
 
-   ul {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      li {
-         padding: 10px 15px;
+      ul {
+         height: 100%;
+         display: flex;
+
+         li {
+            height: 100%;
+            transition: .3s;
+
+            a {
+               padding: 0 15px;
+               height: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               color: black;
+               font-weight: 600;
+            }
+
+            &:hover {
+               background-color: #eee;
+            }
+         }
+      }
+
+      .three-bars {
+         font-size: 24px;
          cursor: pointer;
       }
    }
 }
-@media (max-width: 992px) {
+
+
+@media (max-width: 768px) {
    .navigation {
-      nav {
-         height: 100%;
-         padding-right: 25px;
-      }
-   
-      ul {
-         display: none;
-         li {
-            padding: 10px 15px;
-            cursor: pointer;
+      .container {
+         nav {
+            transition: .3s;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 80px;
+
+            ul {
+               padding: 0;
+               margin: 0;
+               width: 100%;
+               flex-direction: column;
+               text-align: center;
+
+               li {
+                  transition: .3s;
+                  a {
+                     padding: 15px 0;
+                     border: 1px solid black;
+                     border-bottom: none;
+                     width: 100%;
+                     background-color: white;
+                  }
+                  &:last-child {
+                     border-bottom: 1px solid black;
+                  }
+               }
+            }
          }
       }
    }
