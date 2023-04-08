@@ -4,6 +4,7 @@ import Navigation from './routes/navigation/navigation.component';
 import Home from './routes/home/home.component';
 import JoinUs from './routes/join-us/join-us.component';
 import AuthorForm from './routes/author-form/author-form.component';
+import AuthorDashboard from './routes/author-dashboard/author-dashboard.component';
 import SignIn from './routes/sign-in/sign-in.component';
 
 const App = () => 
@@ -13,6 +14,9 @@ const App = () =>
       <Route path='join-us' element={<JoinUs />} />
       <Route path='sign-in' element={<SignIn />} />
       <Route path='author-form' element={<AuthorForm />} />
+    </Route>
+    <Route path='/author-dashboard' element={<AuthorDashboard />}>
+      
     </Route>
   </Routes>
 

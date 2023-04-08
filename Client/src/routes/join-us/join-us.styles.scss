@@ -1,10 +1,13 @@
 .join-us {
    padding-top: 80px;
+   background-color: var(--background-main-color);
+   min-height: calc(100vh - 80px);
 
    h1 {
-      font-size: 54px;
+      font-size: 46px;
       text-align: center;
    }
+
    .container {
 
       padding-top: 80px;
@@ -14,6 +17,11 @@
    }
 }
 
+@media (max-width: 1200px) {
+   .join-us .container {
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+   }
+}
 
 @media (max-width: 768px) {
    .join-us .container {

@@ -1,19 +1,19 @@
 .join-us-card {
    cursor: pointer;
-   border: 2px solid var(--main-color);
    border-radius: 6px;
+   box-shadow: var(--main-box-shadow);
    padding: 20px;
    display: flex;
    flex-direction: column;
    align-items: center;
    height: 200px;
-   transition: height 1s cubic-bezier(0.25, 0.45, 0.45, 0.95), background-color 1s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+   transition: height .6s cubic-bezier(0.25, 0.45, 0.45, 0.95), background-color .8s cubic-bezier(0.25, 0.45, 0.45, 0.95);
    overflow: hidden;
+   background-color: white;
 
    &:hover {
       background-color: var(--main-color);
       height: 350px;
-
       .main-icon {
          color: white;
       }
@@ -27,7 +27,7 @@
 
    h2 {
       transition: inherit;
-      font-size: 44px;
+      font-size: 36px;
       margin-top: 20px;
       color: black;
       margin-bottom: 20px;
@@ -45,12 +45,20 @@
    }
 }
 
+@media (max-width: 1200px) {
+   .join-us-card {
+      &:hover {
+         height: 370px;
+      }
+   }
+}
+
 @media (max-width: 768px) {
    .join-us-card {
       padding: 10px;
       height: 150px;
       &:hover {
-         height: 300px;
+         height: 350px;
       }
       .main-icon {
          font-size: 50px;

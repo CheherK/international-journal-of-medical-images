@@ -1,8 +1,9 @@
 .navigation {
    height: 80px;
-   box-shadow: var(--main-box-shodow);
+   box-shadow: var(--main-box-shadow);
    position: relative;
    z-index: 9999;
+   background-color: white;
    .container {
       height: 100%;
       width: 100%;
@@ -41,6 +42,7 @@
             }
 
             &:hover {
+               color: var(--third-color);
                background-color: #eee;
             }
          }
