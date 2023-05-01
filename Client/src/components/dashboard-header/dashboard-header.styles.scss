@@ -71,7 +71,7 @@
          li {
             padding: 10px 0;
             transition: .3s;
-
+            cursor: pointer;
             &:hover {
                background-color: var(--background-main-color);
             }

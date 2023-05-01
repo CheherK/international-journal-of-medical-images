@@ -19,7 +19,7 @@ const reviewerBenefits = [
 const JoinUs = () => {
    const navigate = useNavigate();
    const authorNavigateHandler = () => navigate("/author-form");
-   const reviewerNavigateHandler = () => navigate("/");
+   const reviewerNavigateHandler = () => navigate("/reviewer-form");
    return (
    <section className="join-us">
       <h1>Join as</h1>

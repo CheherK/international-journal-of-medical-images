@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import logo from "../../assests/logo2.png";
 import "./dashboard-sidebar.styles.scss";
+import { Fragment } from "react";
 
-const DashboardSidebar = ({ menu, dashboardTitle }) => {
+const DashboardSidebar = ({ routes, dashboardTitle }) => {
    return (
       <div className="dashboard-sidebar">
          <img src={logo} alt="logo" />
@@ -9,17 +11,25 @@ const DashboardSidebar = ({ menu, dashboardTitle }) => {
             <h1 className="dashboard-title">
                {dashboardTitle}
             </h1>
-            {menu.map((menuSection) => {
-               const { title, items } = menuSection;
+            {routes.map((routeCategory) => {
+               const { category, pages, layout } = routeCategory;
                return (
-                  <>
-                     <span className="section-title">{title.toUpperCase()}</span>
+                  <Fragment key={`${category}-section`}>
+                     <span className="section-title">{category.toUpperCase()}</span>
                      <ul className="section-link">
                         {
-                           items.map((item) => <li>{item}</li>)
+                           pages.map((item) => {
+                              return (
+                                 <li key={`${layout}${item.path}`}>
+                                    <Link to={`${layout}${item.path}`}>
+                                       {item.name}
+                                    </Link>
+                                 </li>
+                              );
+                           })
                         }
                      </ul>
-                  </>
+                  </Fragment>
                );
             })}
          </div>
