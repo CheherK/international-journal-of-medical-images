@@ -7,7 +7,7 @@ const JoinUsCard = ({ cardIcon, title, benefits, ...otherProps }) => {
          <div className='main-icon'>{cardIcon}</div>
          <h2>{title}</h2>
          <div className='benefits'>
-            {benefits.map((benefit) => <p><AiOutlineCheck className='check-icon' /> {benefit}.</p>)}
+            {benefits.map((benefit, index) => <p key={`p${index}`}><AiOutlineCheck className='check-icon' /> {benefit}.</p>)}
          </div>
       </div>
    );

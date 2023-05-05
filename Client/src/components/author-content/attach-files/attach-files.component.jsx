@@ -4,8 +4,7 @@ import FileInput from "../../file-input/file-input.compoent";
 import "./attach-files.styles.scss";
 
 const ATTACH_FILES_INITAIL_STATE = [
-   <FileInput key={1} order={1} defaultDescription="Manuscript file" defaultSelectedType="Manuscript" />,
-   <FileInput key={2} order={2} defaultDescription="Declaration of interest" defaultSelectedType="Declaration of interest" />
+   <FileInput key={1} order={1} defaultDescription="Manuscript file" defaultSelectedType="Manuscript" />
 ];
 
 const AttachFiles = () => {
