@@ -2,14 +2,14 @@ import ReviewerInvitations from "../components/reviewer-content/reviewer-invitat
 import ReviewerPending from "../components/reviewer-content/reviewer-pending/reviewer-pending.componont";
 import ReviewerCompleted from "../components/reviewer-content/reviewer-completed/reviewer-completed.component";
 
-const REVIEWER_ROUTES = [
+const EDITOR_ROUTES = [
    {
       category: 'Invitations',
       layout: '/reviewer-dashboard',
       pages: [
          {
             name: 'New Reviewer Invitations',
-            path: '/',
+            path: '/new-reviewer-invitations',
             component: ReviewerInvitations
          }
       ]
@@ -32,4 +32,4 @@ const REVIEWER_ROUTES = [
    }
 ];
 
-export default REVIEWER_ROUTES;
+export default EDITOR_ROUTES;

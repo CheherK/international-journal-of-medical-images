@@ -18,6 +18,10 @@
       }
       span {
          margin-top: 40px;
+         a {
+            color: var(--secondary-color);
+            text-decoration: underline;
+         }
       }
       .password-alert {
          margin-bottom: 45px;

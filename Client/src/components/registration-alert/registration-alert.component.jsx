@@ -5,7 +5,7 @@ import Button, { BUTTON_TYPE } from "../button/button.component";
 
 export const ALERT_TYPE = {
    SUCCESS: "success",
-   MAIL_EXIST: "mail-exist"
+   EMAIL_USED: "mail-exist"
 };
 
 const RegistrationAlert = ({ alertType }) => {
@@ -28,7 +28,7 @@ const RegistrationAlert = ({ alertType }) => {
                            <Button buttonType={BUTTON_TYPE.SECOND_BUTTON} onClick={clickHandler}>Sign In From Here</Button>
                         </>
                      );
-                     case ALERT_TYPE.MAIL_EXIST: return (
+                     case ALERT_TYPE.EMAIL_USED: return (
                         <>
                            <BsExclamationCircle className="mail icon" />
                            <p>

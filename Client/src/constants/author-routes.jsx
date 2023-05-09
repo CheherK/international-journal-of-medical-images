@@ -14,7 +14,7 @@ const AUTHOR_ROUTES = [
       pages: [
          {
             name: 'Submit New Manuscript',
-            path: '/submit-new-manuscript',
+            path: '/',
             component: SubmitPaper
          },
          {

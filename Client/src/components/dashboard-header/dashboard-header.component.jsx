@@ -1,12 +1,18 @@
 import "./dashboard-header.styles.scss";
 import { AiOutlineSetting, AiOutlineSearch, AiOutlineNotification } from "react-icons/ai";
-import ProfilePic from "../../assests/profilepicture.png";
+import ProfilePic from "../../assets/profilepicture.png";
 import { Link } from "react-router-dom";
+import useCurrentUser from "../../hooks/useCurrentUser";
 import { useState } from "react";
 
 
 const DashboardHeader = () => {
    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+   const { setCurrentUser } = useCurrentUser();
+   const logoutHandler = () => {
+      setCurrentUser(null);
+      sessionStorage.removeItem('user');
+   };
 
    const toggleSettingsMenuHandler = () => setIsSettingsOpen(!isSettingsOpen);
 
@@ -28,7 +34,7 @@ const DashboardHeader = () => {
             <div className="settings-menu">
                <ul>
                   <li>Settigns</li>
-                  <li>Logout</li>
+                  <li onClick={logoutHandler}>Logout</li>
                </ul>
             </div>
          }

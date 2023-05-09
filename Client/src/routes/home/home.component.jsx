@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button, { BUTTON_TYPE } from "../../components/button/button.component";
-import journalcover from "../../assests/journal-cover.png";
+import journalcover from "../../assets/journal-cover.png";
 import "./home.styles.scss";
 
 const Home = () => {

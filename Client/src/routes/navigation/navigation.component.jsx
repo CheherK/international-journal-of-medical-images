@@ -2,8 +2,8 @@ import { Fragment, useState } from 'react';
 import { GoThreeBars } from "react-icons/go";
 import { Outlet, Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import logoLS from '../../assests/logo2.png';
-import logoSS from '../../assests/logo-mobile.png';
+import logoLS from '../../assets/logo2.png';
+import logoSS from '../../assets/logo-mobile.png';
 import './navigation.styles.scss';
 
 
