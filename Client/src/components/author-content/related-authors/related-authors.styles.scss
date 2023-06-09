@@ -1,0 +1,64 @@
+.related-authors-container {
+   display: flex;
+   flex-direction: column;
+   margin: 30px auto;
+   max-width: 1000px;
+   padding: 20px;
+   border-radius: 12px;
+   border: 1px solid black;
+
+   .reminder {
+      color: #c5c5c5;
+      font-size: 14px;
+      margin-bottom: 25px;
+   }
+
+   .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      #authors-of-manuscript {
+         margin-top: 20px;
+      }
+
+      & > label {
+         margin-bottom: 15px;
+         font-weight: bold;
+         font-size: 20px;
+      }
+      .authors {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+         gap: 40px;
+         margin-bottom: 40px;
+
+         .author-card {
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: var(--main-box-shadow);
+            transition: .3s;
+            .header {
+               display: flex;
+               justify-content: space-between;
+               .remove-author-btn {
+                  width: min-content;
+                  color: red;
+                  cursor: pointer;
+                  background-color: white;
+                  font-size: 20px;
+                  margin-left: 10px;
+                  display: flex;
+                  align-items: center;
+               }
+               h3 {
+                  font-size: 16px;
+               }
+            }
+            &:hover {
+               transform: scale(1.025);
+            }
+         }
+      }
+   }
+}

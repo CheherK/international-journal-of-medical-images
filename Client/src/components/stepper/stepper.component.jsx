@@ -1,18 +1,17 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { SubmissionContext } from '../../contexts/submission-files.context';
+import "./stepper.styles.scss";
+import { Alert, AlertTitle } from '@mui/material';
 
 
 const HorizontalStepper = ({ steps, components }) => {
-   const {submission} = React.useContext(SubmissionContext);
-   const [activeStep, setActiveStep] = React.useState(0);
-   const [skipped, setSkipped] = React.useState(new Set());
-
+   const [activeStep, setActiveStep] = useState(0);
+   const [skipped, setSkipped] = useState(new Set());
    const isStepOptional = (step) => {
       return step === 5;
    };
@@ -59,9 +58,6 @@ const HorizontalStepper = ({ steps, components }) => {
       setActiveStep(0);
    };
 
-   const barabara = () => {
-      console.log(submission);
-   }
    return (
       <Box sx={{ width: '100%' }}>
          <Stepper activeStep={activeStep}>
@@ -84,23 +80,23 @@ const HorizontalStepper = ({ steps, components }) => {
             })}
          </Stepper>
          {activeStep === steps.length ? (
-            <React.Fragment>
-               <Typography sx={{ mt: 2, mb: 1 }}>
-                  All steps completed - you&apos;re finished
-               </Typography>
+            <>
+               <br />
+               <Alert severity="success">
+                  <AlertTitle>All steps completed - you&apos;re finished!</AlertTitle>
+               </Alert>
                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                   <Box sx={{ flex: '1 1 auto' }} />
                   <Button onClick={handleReset}>Reset</Button>
-                  <Button onClick={barabara}>barabra</Button>
                </Box>
-            </React.Fragment>
+            </>
          ) : (
-            <React.Fragment>
+            <>
                <div sx={{ mt: 2, mb: 1 }}>
                   {components[activeStep]}
                </div>
 
-               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+               <Box className="footer-of-stepper" sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                   <Button
                      color="inherit"
                      disabled={activeStep === 0}
@@ -116,14 +112,14 @@ const HorizontalStepper = ({ steps, components }) => {
                      </Button>
                   )}
 
-                  <Button onClick={handleNext}>
+                  <Button onClick={handleNext} >
                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
                </Box>
-            </React.Fragment>
+            </>
          )}
       </Box>
    );
-}
+};
 
 export default HorizontalStepper;

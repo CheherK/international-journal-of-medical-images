@@ -1,67 +1,64 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import ReactQuill from "react-quill";
-import { SubmissionContext } from "../../../contexts/submission-files.context";
-import { AiOutlineClose } from "react-icons/ai";
+import useSubmission from "../../../hooks/useSubmission";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import { AUTHOR_SAVE_MANUSCRIPT } from "../../../api/author-url";
 import Button, { BUTTON_TYPE } from "../../button/button.component";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import axios from "../../../api/axios";
 import "react-quill/dist/quill.snow.css";
 import "./manuscript-data.styles.scss";
 
 const ManuscripData = () => {
-   const { submissionData, setSubmissionData } = useContext(SubmissionContext);
-   const [title, setTitle] = useState("");
-   const [abstract, setAbstract] = useState("");
-   const [keywords, setKeywords] = useState([]);
-   const [authors, setAuthors] = useState([
-      { firstName: "", lastName: "", email: "" },
-   ]);
+   const { currentUser } = useCurrentUser();
+   const { setManuscriptId, setManuscriptData, manuscriptData } = useSubmission();
+   const [title, setTitle] = useState(manuscriptData.title || "");
+   const [abstract, setAbstract] = useState(manuscriptData.abstract || "");
+   const [keywords, setKeywords] = useState(manuscriptData.keywords || []);
+   const [submitSuccess, setSubmitSuccess] = useState(false);
+   const [submitFailed, setSubmitFailed] = useState(false);
 
-   const CreateNewSubmissionDataObject = (termToModify, value) => (
-      { ...submissionData, [termToModify]: value }
-   );
-
-
-   // const handleSubmit = (event) => {
-   //    event.preventDefault();
-   //    console.log({ title, abstract, keywords, authors });
-   // };
+   const handleSubmit = async (event) => {
+      event.preventDefault();
+      const manuscript = {
+         title,
+         keywords
+      };
+      try {
+         const response = await axios.post(
+            AUTHOR_SAVE_MANUSCRIPT(currentUser.id),
+            JSON.stringify(manuscript),
+            {
+               headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${currentUser.token}`,
+               }
+            }
+         );
+         setSubmitSuccess(true);
+         setManuscriptId(response?.data.id);
+         setManuscriptData(manuscriptData);
+      } catch (error) {
+         console.log(error);
+         setSubmitFailed(true);
+      }
+   };
 
    const handleTitleChange = (value) => {
       setTitle(value);
-      setSubmissionData(CreateNewSubmissionDataObject("title", title));
    };
 
    const handleAbstractChange = (value) => {
       setAbstract(value);
-      setSubmissionData(CreateNewSubmissionDataObject("abstract", abstract));
    };
 
    const handleKeywordsChange = (event) => {
       setKeywords(event.target.value.split(";"));
-      setSubmissionData(CreateNewSubmissionDataObject("title", keywords));
-   };
-
-   const handleAuthorChange = (index, e) => {
-      const { name, value } = e.target;
-      const list = [...authors];
-      list[index][name] = value;
-      setAuthors(list);
-      setSubmissionData(CreateNewSubmissionDataObject("authors", authors));
-   };
-
-   const handleAddAuthor = (e) => {
-      e.preventDefault();
-      setAuthors([...authors, { firstName: "", lastName: "", email: "" }]);
-   };
-
-   const removeAuthor = (index) => {
-      const newAuthors = [...authors];
-      newAuthors.splice(index, 1);
-      setAuthors(newAuthors);
-      setSubmissionData(CreateNewSubmissionDataObject("authors", authors));
    };
 
    return (
-      <div className="manuscript-data-container">
+      <form className="manuscript-data-container" onSubmit={handleSubmit}>
          <div className="form-group">
             <label htmlFor="title">Title *</label>
             <ReactQuill
@@ -83,63 +80,30 @@ const ManuscripData = () => {
             <input
                type="text"
                id="keywords"
-               value={keywords}
+               value={keywords.join(";")}
                onChange={handleKeywordsChange}
                placeholder="Enter keywords separated by semicolon"
                required
                maxLength={2560}
             />
          </div>
-         <div className="form-group">
-            <label>Authors</label>
-            {authors.map((author, index) => (
-               <div key={index} className="author-fields">
-                  <div className="author-input">
-                     <label htmlFor="firstName">First Name</label>
-                     <input
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        placeholder="First name"
-                        value={author.firstName}
-                        onChange={(e) => handleAuthorChange(index, e)}
-                     />
-                  </div>
-                  <div className="author-input">
-                     <label htmlFor="lastName">Last Name</label>
-                     <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        placeholder="Last name"
-                        value={author.lastName}
-                        onChange={(e) => handleAuthorChange(index, e)}
-                     />
-                  </div>
-                  <div className="author-input">
-                     <label htmlFor="email">Email</label>
-                     <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="Email"
-                        value={author.email}
-                        onChange={(e) => handleAuthorChange(index, e)}
-                     />
-                  </div>
-                  <button
-                     type="button"
-                     className="remove-author-btn"
-                     onClick={() => removeAuthor(index)}
-                  >
-                     <AiOutlineClose />
-                  </button>
-               </div>
-
-            ))}
-            <Button buttonType={BUTTON_TYPE.SECOND_BUTTON} onClick={handleAddAuthor}>Add Author</Button>
-         </div>
-      </div >
+         {submitSuccess
+            ? (
+               <Alert severity="success">
+                  <AlertTitle>Your manuscript data has been successfully submitted!</AlertTitle>
+                  You can go to the next step.
+               </Alert>
+            ) : (
+               <Button buttonType={BUTTON_TYPE.MAIN_BUTTON} type="submit">Submit Manuscript Data</Button>
+            )}
+         {
+            submitFailed &&
+            <Alert severity="error">
+               <AlertTitle>Submission of manuscript data failed !!</AlertTitle>
+               Please try again.
+            </Alert>
+         }
+      </form >
    );
 };
 

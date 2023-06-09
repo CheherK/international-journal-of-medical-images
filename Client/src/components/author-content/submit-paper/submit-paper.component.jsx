@@ -1,12 +1,13 @@
 import HorizontalStepper from "../../stepper/stepper.component";
 import AttachFiles from "../attach-files/attach-files.component";
+import RelatedAuthors from "../related-authors/related-authors.component";
 import ManuscripData from "../manuscript-data/manuscript-data.component";
 import Comment from "../comment/comment.component";
 import './submit-paper.styles.scss';
 
-const steps = ['Attach Files', 'Manuscript Data', 'Comments'];
+const steps = ['Manuscript Data',"Authors", 'Attach Files', 'Comments'];
 
-const components = [<ManuscripData />, <AttachFiles />, <Comment />];
+const components = [<ManuscripData />, <RelatedAuthors />, <AttachFiles />, <Comment />];
 
 const SubmitPaper = () => {
 

@@ -1,44 +1,46 @@
-import { useState, useContext } from 'react';
-import { SubmissionContext } from "../../contexts/submission-files.context";
+import { useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
 import fileCategories from '../../constants/file-categories';
 import './file-input.styles.scss';
+import useSubmission from '../../hooks/useSubmission';
 
 const FILE_INPUT_INITIAL_STATE = {
-   order: 0,
-   type: '',
-   description: '',
-   file: {},
+   model: {
+      order: null,
+      type: '',
+      description: '',
+      fileName: '',
+   },
+   file: null,
 };
 
 const FileInput = ({ defaultSelectedType = '', defaultDescription = '', order }) => {
 
-   const [fileData, setFileData] = useState({...FILE_INPUT_INITIAL_STATE, order: order, type: defaultSelectedType, description: defaultDescription});
+   const [fileData, setFileData] = useState({ ...FILE_INPUT_INITIAL_STATE, model: { order: order, type: defaultSelectedType, description: defaultDescription, fileName: '' } });
 
-   const { type, description, file } = fileData;
+   const { manuscriptFiles, setManuscriptFiles } = useSubmission();
 
-   const { submissionFiles, setSubmissionFiles } = useContext(SubmissionContext);
+   const { type, description, fileName } = fileData.model;
 
    const changeSubmissionFilesArray = (newFileData, order) =>
-      submissionFiles.map((fileData, index) => index === order ? newFileData : fileData);
+      manuscriptFiles.map((fileData, index) => index === order ? newFileData : fileData);
 
    const handleInputChange = (event) => {
       const { name, value } = event.target;
-      setFileData({ ...fileData, [name]: value });
-      setSubmissionFiles(changeSubmissionFilesArray(fileData, order));
-      console.log(submissionFiles);
+      setFileData({ ...fileData, model: { ...fileData.model, [name]: value } });
+      setManuscriptFiles(changeSubmissionFilesArray(fileData, order));
    };
 
    const handleFileChange = (event) => {
-      const files = event.target.files;
-      if (files) {
-         setFileData({ ...fileData, file: files[0] });
-         setSubmissionFiles(changeSubmissionFilesArray(fileData, order));
+      if (event.target.files[0]) {
+         console.log("handle file change condition");
+         setFileData({ ...fileData, model: { ...fileData.model, fileName: event.target.files[0].name }, file: event.target.files[0] });
+         setManuscriptFiles(changeSubmissionFilesArray({ ...fileData, model: { ...fileData.model, fileName: event.target.files[0].name }, file: event.target.files[0] }, order));
       }
    };
 
    return (
-      <form className="file-input-container">
+      <div className="file-input-container">
 
          <div>
             <select id="file-categories" name='type' value={type || defaultSelectedType} onChange={handleInputChange}>
@@ -53,14 +55,14 @@ const FileInput = ({ defaultSelectedType = '', defaultDescription = '', order })
             <label htmlFor={`file-upload-${order}`} className="custom-file-upload">
                <BiCloudUpload className="upload-icon" />
                <span>Upload File</span>
-               <input id={`file-upload-${order}`} type="file" className="inputfile" required onChange={handleFileChange} />
+               <input id={`file-upload-${order}`} type="file" className="inputfile" onChange={handleFileChange} />
             </label>
          </div>
 
          <div>
-            <span className="file-name">{file.name || "no file selected"}</span>
+            <span className="file-name">{fileName || "no file selected"}</span>
          </div>
-      </form>
+      </div>
    );
 };
 

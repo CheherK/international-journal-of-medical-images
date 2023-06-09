@@ -1,32 +1,49 @@
-import ReviewerInvitations from "../components/reviewer-content/reviewer-invitations/reviewer-invitations.component";
 import ReviewerPending from "../components/reviewer-content/reviewer-pending/reviewer-pending.componont";
-import ReviewerCompleted from "../components/reviewer-content/reviewer-completed/reviewer-completed.component";
+import SubmissionApproval from "../components/editor-content/submission-approval/submission-approval.component";
+import SubmissionReviewers from "../components/editor-content/submission-reviewers/submission-reviewers.component";
+import SubmissionDecision from "../components/editor-content/submissions-decision/submissions-decision.component";
 
 const EDITOR_ROUTES = [
    {
-      category: 'Invitations',
-      layout: '/reviewer-dashboard',
+      category: 'Submissions',
+      layout: '/editor-dashboard',
       pages: [
          {
-            name: 'New Reviewer Invitations',
-            path: '/new-reviewer-invitations',
-            component: ReviewerInvitations
+            name: "Submissions Needing Approval",
+            path: '/submissions-needing-approval',
+            component: SubmissionApproval
+         },
+         {
+            name: 'Submissions Needing Reviewers',
+            path: '/submissions-needing-review',
+            component: SubmissionReviewers
+         },
+         {
+            name: 'Submissions Needing Decision',
+            path: '/submissions-needing-decision',
+            component: SubmissionDecision
          }
       ]
    },
    {
-      category: 'Assignements',
-      layout: '/reviewer-dashboard',
+      category: 'Revision',
+      layout: '/editor-dashboard',
       pages: [
          {
-            name: 'Pending Assignements',
-            path: '/pending-assignements',
+            name: 'Revisions Needing Decision',
+            path: '/revisions-need-decision',
             component: ReviewerPending
-         },
+         }
+      ]
+   },
+   {
+      category: 'Completed',
+      layout: '/editor-dashboard',
+      pages: [
          {
-            name: 'Completed Assignements',
-            path: '/completed-assignements',
-            component: ReviewerCompleted
+            name: 'Submissions With Decision',
+            path: '/submissions-with-decision',
+            component: ReviewerPending
          }
       ]
    }

@@ -36,19 +36,21 @@ const SignIn = () => {
             LOGIN_URL,
             JSON.stringify(formFields),
             {
-               headers: { "Content-Type": "application/json" }
+               headers: { "Content-Type": "application/json" },
             }
          );
          const tokenData = await jwt_decode(response?.data);
          setCurrentUser(
             {
-               id: tokenData?.iti,
+               id: tokenData?.jti,
                email: tokenData?.sub,
                role: tokenData?.role[0],
+               token: response?.data
             }
          );
          console.log(currentUser);
       } catch (error) {
+         console.log(error);
          switch (error.code) {
             case "auth/wrong-password": alert("Wrong Password"); break;
             case "auth/user-not-found": alert("Wrong email"); break;

@@ -1,5 +1,4 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useEffect } from "react";
 import useCurrentUser from "../../hooks/useCurrentUser";
 
 const RequireAuth = () => {

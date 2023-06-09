@@ -7,7 +7,12 @@ export const USER_ACTION_TYPES = {
 };
 
 const INITIAL_STATE = {
-   currentUser: null,
+   currentUser: {
+      id: "",
+      email: "",
+      role: "",
+      token: ""
+   },
 };
 
 const userReducer = (state, action) => {
@@ -31,17 +36,17 @@ export const UserProvider = ({ children }) => {
 
    const setCurrentUser = (user) => {
       dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
-   }
+   };
 
    useEffect(() => {
       const storedUser = sessionStorage.getItem("user");
-      if(storedUser) {
+      if (storedUser?.id !== "") {
          setCurrentUser(JSON.parse(storedUser));
       }
    }, []);
 
    useEffect(() => {
-      currentUser && sessionStorage.setItem("user", JSON.stringify(currentUser));
+      currentUser?.id !== "" && sessionStorage.setItem("user", JSON.stringify(currentUser));
    }, [currentUser]);
 
    const value = {

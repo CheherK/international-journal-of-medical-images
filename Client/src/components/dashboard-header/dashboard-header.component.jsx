@@ -1,17 +1,19 @@
 import "./dashboard-header.styles.scss";
 import { AiOutlineSetting, AiOutlineSearch, AiOutlineNotification } from "react-icons/ai";
 import ProfilePic from "../../assets/profilepicture.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import { useState } from "react";
 
 
 const DashboardHeader = () => {
    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+   const navigate = useNavigate();
    const { setCurrentUser } = useCurrentUser();
    const logoutHandler = () => {
       setCurrentUser(null);
       sessionStorage.removeItem('user');
+      navigate("/");
    };
 
    const toggleSettingsMenuHandler = () => setIsSettingsOpen(!isSettingsOpen);

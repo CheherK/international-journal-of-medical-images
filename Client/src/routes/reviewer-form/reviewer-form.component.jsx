@@ -17,6 +17,7 @@ const FORM_INITIAL_STATE = {
    institution: "",
    country: "",
    address: "",
+   orcid: "",
    password: "",
    confirmPassword: "",
 };
@@ -26,7 +27,7 @@ const ReviewerForm = () => {
    const [passwordMatch, setPasswordMatch] = useState(true);
    const [registrationSuccess, setRgistrationSuccess] = useState(false);
    const [emailUsed, setEmailUsed] = useState(false);
-   const { firstName, lastName, email, jobTitle, phoneNumber, institution, country, address, password, confirmPassword } = form;
+   const { firstName, lastName, email, jobTitle, phoneNumber, institution, country, address,orcid , password, confirmPassword } = form;
 
    useEffect(() => {
       confirmPassword !== password ? setPasswordMatch(false) : setPasswordMatch(true);
@@ -85,6 +86,7 @@ const ReviewerForm = () => {
                            <FormInput label="Phone Number" type='tel' required onChange={handleInputChange} name='phoneNumber' value={phoneNumber} />
                            <FormInput label="Country" type='text' required onChange={handleInputChange} name='country' value={country} />
                            <FormInput label="Address" type='text' required onChange={handleInputChange} name='address' value={address} />
+                           <FormInput label="ORCID" type='text' onChange={handleInputChange} name='orcid' value={orcid} />
                            <FormInput label="Password" type='password' minLength="8" required onChange={handleInputChange} name='password' value={password} />
                            <FormInput label="Confirm Password" type='password' minLength="8" required onChange={(handleInputChange)} name='confirmPassword' value={confirmPassword} />
                            {!passwordMatch && <Alert className='password-alert' severity="error">Must much the first password input field!</Alert>}

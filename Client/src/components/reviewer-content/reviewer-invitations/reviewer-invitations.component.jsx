@@ -1,14 +1,15 @@
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import CustomizedTables from '../data-table/data-table.component';
 import "./reviewer-invitations.styles.scss";
 
-const newInvitations = null;
+const newInvitations = 1;
 
 const ReviewerInvitations = () => {
    return (
       newInvitations ?
          (
-            <div>there is new invitations</div>
+            <CustomizedTables />
          ) :
          (
             <Alert severity="info">
